@@ -9,6 +9,7 @@ return {
       },
     })
     require("mini.pairs").setup()
+    require("mini.notify").setup()
     require("mini.cursorword").setup()
     require("mini.indentscope").setup({
       symbol = "▏",
