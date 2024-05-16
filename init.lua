@@ -1,3 +1,5 @@
+vim.deprecate = function() end
+
 collectgarbage("stop")
 
 jit.off()
