@@ -29,7 +29,7 @@ return {
           select = true,
         }),
         ["<Tab>"] = cmp.mapping(function(fallback)
-         if luasnip.expand_or_jumpable() then
+          if luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           else
             fallback()
@@ -78,6 +78,8 @@ return {
             else
               vim_item.menu = entry.source.source.client.name
             end
+          elseif entry.source.name == "nvim_lsp_signature_help" then
+            vim_item.menu = "signature"
           else
             vim_item.menu = entry.source.name
           end
