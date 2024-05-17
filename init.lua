@@ -1,4 +1,4 @@
-vim.deprecate = function() end
+-- vim.deprecate = function() end
 
 collectgarbage("stop")
 
