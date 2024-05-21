@@ -2,7 +2,20 @@
 
 M = {}
 
-local global_snippets = {}
+local global_snippets = {
+  {
+    trigger = "date",
+    body = function()
+      return os.date("%Y/%m/%d")
+    end,
+  },
+  {
+    trigger = "time",
+    body = function()
+      return os.date("%Y/%m/%d %H:%M:%S")
+    end,
+  },
+}
 
 local snippets_by_filetype = {
   python = {
@@ -43,8 +56,7 @@ local function expand_under_cursor()
   vim.api.nvim_buf_set_text(0, line - 1, col - #trigger, line - 1, col, {})
   vim.api.nvim_win_set_cursor(0, { line, col - #trigger })
 
-  vim.snippet.expand(body)
-
+  vim.snippet.expand(type(body) == "function" and body() or body)
   return true
 end
 
