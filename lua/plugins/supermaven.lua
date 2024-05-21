@@ -8,6 +8,8 @@ return {
         accept_suggestion = "<C-h>",
         clear_suggestion = "<C-X>",
       },
+      disable_inline_completion = true,
+      disable_keymaps = true,
     })
   end,
 }

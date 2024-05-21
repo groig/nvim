@@ -70,6 +70,7 @@ return {
             Unit = " ",
             Value = "󰎠 ",
             Variable = " ",
+            Supermaven = "",
           })[vim_item.kind]
 
           if entry.source.name == "nvim_lsp" then
@@ -93,12 +94,13 @@ return {
         completion = cmp.config.window.bordered({ scrollbar = false }),
         documentation = cmp.config.window.bordered({ scrollbar = false }),
       },
-      -- experimental = { ghost_text = { hl_group = "Comment" } },
+      experimental = { ghost_text = { hl_group = "Comment" } },
       performance = {
         debounce = 300,
         throttle = 100,
       },
       sources = {
+        { name = "supermaven", priority = 100 },
         { name = "nvim_lsp_signature_help", priority = 95 },
         { name = "nvim_lsp", priority = 90 },
         {
