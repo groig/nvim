@@ -20,6 +20,7 @@ local global_snippets = {
 local snippets_by_filetype = {
   python = {
     { trigger = "pudb", body = "import pudb; pudb.set_trace()" },
+    { trigger = "docs", body = '"""\n$0\n"""' },
   },
 }
 
