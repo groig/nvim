@@ -11,6 +11,8 @@ return {
     require("mini.pairs").setup()
     require("mini.notify").setup()
     require("mini.cursorword").setup()
+    require("mini.git").setup()
+    vim.keymap.set("n", "<leader>g", "<cmd>Git blame %<cr>", { noremap = true })
     require("mini.indentscope").setup({
       symbol = "▏",
       draw = {
