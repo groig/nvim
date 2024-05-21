@@ -5,11 +5,10 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
-    "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   config = function()
-    local luasnip = require("luasnip")
+    require("my.snippets").register_cmp_source()
     local cmp = require("cmp")
     cmp.setup({
       completion = {
@@ -18,32 +17,17 @@ return {
       view = { entries = { follow_cursor = true } },
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          vim.snippet.expand(arg.body)
         end,
       },
       mapping = cmp.mapping.preset.insert({
+        ["<C-e>"] = cmp.mapping.abort(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
       }),
       formatting = {
         fields = { "kind", "abbr", "menu" },
@@ -104,7 +88,7 @@ return {
         { name = "nvim_lsp_signature_help", priority = 95 },
         { name = "nvim_lsp", priority = 90 },
         {
-          name = "luasnip",
+          name = "snippets",
           priority = 80,
           entry_filter = function()
             local context = require("cmp.config.context")
