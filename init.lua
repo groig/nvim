@@ -62,6 +62,7 @@ set.listchars = {
 set.synmaxcol = 1024
 set.termguicolors = true
 set.cursorline = true
+
 set.guifont = "Iosevka Light:h11"
 vim.g["neovide_cursor_animation_length"] = 0.05
 vim.g["neovide_cursor_trail_size"] = 0
@@ -138,7 +139,7 @@ set.gdefault = true
 
 -- mappings
 vim.g.mapleader = " "
---
+
 -- clear search highlights
 map("n", "<leader>/", ":nohlsearch<cr>", { noremap = true })
 
@@ -174,6 +175,9 @@ map("n", "gs", ":%s/", { noremap = true })
 
 -- [S]plit line (sister to [J]oin lines). cc still substitutes the line like S would
 map("n", "S", "i<CR><Esc>", { noremap = true })
+
+-- close other window
+map("n", "<leader>c", ":wincmd p | q<CR>", { noremap = true, silent = true })
 
 -- augroups
 autocmd("BufReadPost", {
