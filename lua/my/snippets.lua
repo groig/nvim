@@ -2,53 +2,9 @@
 
 M = {}
 
-local global_snippets = {
-  {
-    trigger = "date",
-    body = function()
-      return os.date("%Y/%m/%d")
-    end,
-  },
-  {
-    trigger = "time",
-    body = function()
-      return os.date("%Y/%m/%d %H:%M:%S")
-    end,
-  },
-  {
-    trigger = "todo",
-    body = function()
-      return vim.bo.commentstring:gsub("%%s", "TODO: ")
-    end,
-  },
-  { trigger = "lorem", body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-  {
-    trigger = "uuid",
-    body = function()
-      local random = math.random
-      local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
-      return string.gsub(template, "[xy]", function(c)
-        local v = (c == "x") and random(0, 0xf) or random(8, 0xb)
-        return string.format("%x", v)
-      end)
-    end,
-  },
-}
+local global_snippets = require("my.global_snippets")
 
-local snippets_by_filetype = {
-  python = {
-    { trigger = "pudb", body = "import pudb; pudb.set_trace()" },
-    { trigger = "docs", body = '"""\n$0\n"""' },
-    {
-      trigger = "timer",
-      body = "import time\nstart_time = time.time()\n$0\nprint('Execution Time:', time.time() - start_time)",
-    },
-    { trigger = "nq", body = "# noqa" },
-  },
-  javascript = {
-    { trigger = "cl", body = "console.log($0);" },
-  },
-}
+local snippets_by_filetype = require("my.filetype_snippets")
 
 local function get_buf_snips()
   local ft = vim.bo.filetype
