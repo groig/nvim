@@ -15,11 +15,6 @@ return {
         keyword_length = 1,
       },
       view = { entries = { follow_cursor = true } },
-      snippet = {
-        expand = function(args)
-          vim.snippet.expand(arg.body)
-        end,
-      },
       mapping = cmp.mapping.preset.insert({
         ["<C-e>"] = cmp.mapping.abort(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -28,6 +23,16 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
+        ["<TAB>"] = function(fallback)
+          if vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(1)
+          else
+            fallback()
+          end
+        end,
+        ["<S-TAB>"] = function(fallback)
+          vim.snippet.jump(-1)
+        end,
       }),
       formatting = {
         fields = { "kind", "abbr", "menu" },

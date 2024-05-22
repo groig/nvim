@@ -276,4 +276,6 @@ highlight! MiniIndentscopeSymbol guifg=#404040
 
 highlight! WinSeparator guifg=#505050
 highlight! FzfLuaBorder guifg=#505050
+
+highlight! link SnippetTabstop Normal
 " Generated with RNB (https://github.com/romainl/vim-rnb)
