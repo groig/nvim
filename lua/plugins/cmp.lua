@@ -8,8 +8,40 @@ return {
     "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   config = function()
-    require("my.snippets").register_source()
     local cmp = require("cmp")
+
+    -- https://old.reddit.com/r/neovim/comments/1cxfhom/builtin_snippets_so_good_i_removed_luasnip/
+    local snippets = require("my.snippets")
+    local function get_buf_snippets()
+      local ft = vim.bo.filetype
+      local snips = vim.list_slice(snippets["global"])
+
+      if ft and snippets[ft] then
+        vim.list_extend(snips, snippets[ft])
+      end
+
+      return snips
+    end
+
+    local snippets_source = {}
+    function snippets_source.complete(_, _, callback)
+      local completion_items = vim.tbl_map(function(s)
+        local insert_text = type(s.body) == "function" and s.body() or s.body
+        local item = {
+          word = s.trigger,
+          label = s.trigger,
+          kind = vim.lsp.protocol.CompletionItemKind.Snippet,
+          insertText = insert_text,
+          insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
+        }
+        return item
+      end, get_buf_snippets())
+
+      callback(completion_items)
+    end
+
+    cmp.register_source("snippets", snippets_source)
+
     cmp.setup({
       completion = {
         keyword_length = 1,

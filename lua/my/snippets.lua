@@ -1,12 +1,8 @@
--- https://old.reddit.com/r/neovim/comments/1cxfhom/builtin_snippets_so_good_i_removed_luasnip/
-
-M = {}
-
 local function s(trigger, body)
   return { trigger = trigger, body = body }
 end
 
-local snippets = {
+return {
   global = {
     s("date", function()
       return os.date("%Y/%m/%d")
@@ -42,43 +38,3 @@ local snippets = {
     s("code", "```\n$0\n```"),
   },
 }
-
-local function get_buf_snips()
-  local ft = vim.bo.filetype
-  local snips = vim.list_slice(snippets["global"])
-
-  if ft and snippets[ft] then
-    vim.list_extend(snips, snippets[ft])
-  end
-
-  return snips
-end
-
-function M.register_source()
-  local cmp_source = {}
-  local cache = {}
-  function cmp_source.complete(_, _, callback)
-    local filetype = vim.bo.filetype
-    if not cache[filetype] then
-      local completion_items = vim.tbl_map(function(s)
-        local insert_text = type(s.body) == "function" and s.body() or s.body
-        local item = {
-          word = s.trigger,
-          label = s.trigger,
-          kind = vim.lsp.protocol.CompletionItemKind.Snippet,
-          insertText = insert_text,
-          insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
-        }
-        return item
-      end, get_buf_snips())
-
-      cache[filetype] = completion_items
-    end
-
-    callback(cache[filetype])
-  end
-
-  require("cmp").register_source("snippets", cmp_source)
-end
-
-return M
