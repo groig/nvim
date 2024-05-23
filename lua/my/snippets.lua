@@ -2,9 +2,47 @@
 
 M = {}
 
-local global_snippets = require("my.global_snippets")
+local function s(trigger, body)
+  return { trigger = trigger, body = body }
+end
 
-local snippets_by_filetype = require("my.filetype_snippets")
+local global_snippets = {
+  s("date", function()
+    return os.date("%Y/%m/%d")
+  end),
+  s("time", function()
+    return os.date("%Y/%m/%d %H:%M:%S")
+  end),
+  s("todo", function()
+    return vim.bo.commentstring:gsub("%%s", "TODO: ")
+  end),
+  s("lorem", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+  s("uuid", function()
+    local random = math.random
+    local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+    return string.gsub(template, "[xy]", function(c)
+      local v = (c == "x") and random(0, 0xf) or random(8, 0xb)
+      return string.format("%x", v)
+    end)
+  end),
+}
+
+local snippets_by_filetype = {
+  python = {
+    s("pudb", "import pudb; pudb.set_trace()"),
+    s("docs", '"""\n$0\n"""'),
+    s("timer", "import time\nstart_time = time.time()\n$0\nprint('Execution Time:', time.time() - start_time)"),
+    s("nq", "# noqa"),
+  },
+  javascript = {
+    s("cl", "console.log($0);"),
+  },
+  markdown = {
+    s("link", "[$0]($1)"),
+    s("img", "![$0]($1)"),
+    s("code", "```\n$0\n```"),
+  },
+}
 
 local function get_buf_snips()
   local ft = vim.bo.filetype
@@ -17,62 +55,31 @@ local function get_buf_snips()
   return snips
 end
 
-local function get_snippet()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  local cur_line = vim.api.nvim_buf_get_lines(0, line - 1, line, true)
-  local line_pre_cursor = cur_line[1]:sub(1, col)
-
-  for _, s in ipairs(get_buf_snips()) do
-    if vim.endswith(line_pre_cursor, s.trigger) then
-      return s.trigger, s.body, line, col
-    end
-  end
-
-  return nil
-end
-
-local function expand_under_cursor()
-  local trigger, body, line, col = get_snippet()
-  if not trigger or not line or not col then
-    return false
-  end
-  vim.api.nvim_buf_set_text(0, line - 1, col - #trigger, line - 1, col, {})
-  vim.api.nvim_win_set_cursor(0, { line, col - #trigger })
-
-  vim.snippet.expand(type(body) == "function" and body() or body)
-  return true
-end
-
--- cmp source for snippets to show up in completion menu
-function M.register_cmp_source()
+function M.register_source()
   local cmp_source = {}
-  cmp_source.new = function()
-    local self = setmetatable({ cache = {} }, { __index = cmp_source })
-    return self
-  end
-  cmp_source.complete = function(self, _, callback)
-    local bufnr = vim.api.nvim_get_current_buf()
-    if not self.cache[bufnr] then
+  local cache = {}
+  function cmp_source.complete(_, _, callback)
+    local filetype = vim.bo.filetype
+    if not cache[filetype] then
       local completion_items = vim.tbl_map(function(s)
-        return {
+        local insert_text = type(s.body) == "function" and s.body() or s.body
+        local item = {
           word = s.trigger,
           label = s.trigger,
-          kind = require("cmp").lsp.CompletionItemKind.Snippet,
+          kind = vim.lsp.protocol.CompletionItemKind.Snippet,
+          insertText = insert_text,
+          insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
         }
+        return item
       end, get_buf_snips())
 
-      self.cache[bufnr] = completion_items
-      callback(completion_items)
+      cache[filetype] = completion_items
     end
 
-    callback(self.cache[bufnr])
+    callback(cache[filetype])
   end
 
-  function cmp_source:execute(completion_item, callback)
-    expand_under_cursor()
-    callback(completion_item)
-  end
-  require("cmp").register_source("snippets", cmp_source.new())
+  require("cmp").register_source("snippets", cmp_source)
 end
 
 return M

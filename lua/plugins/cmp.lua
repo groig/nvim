@@ -8,7 +8,7 @@ return {
     "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   config = function()
-    require("my.snippets").register_cmp_source()
+    require("my.snippets").register_source()
     local cmp = require("cmp")
     cmp.setup({
       completion = {
