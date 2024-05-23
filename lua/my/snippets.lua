@@ -6,28 +6,27 @@ local function s(trigger, body)
   return { trigger = trigger, body = body }
 end
 
-local global_snippets = {
-  s("date", function()
-    return os.date("%Y/%m/%d")
-  end),
-  s("time", function()
-    return os.date("%Y/%m/%d %H:%M:%S")
-  end),
-  s("todo", function()
-    return vim.bo.commentstring:gsub("%%s", "TODO: ")
-  end),
-  s("lorem", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-  s("uuid", function()
-    local random = math.random
-    local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
-    return string.gsub(template, "[xy]", function(c)
-      local v = (c == "x") and random(0, 0xf) or random(8, 0xb)
-      return string.format("%x", v)
-    end)
-  end),
-}
-
-local snippets_by_filetype = {
+local snippets = {
+  global = {
+    s("date", function()
+      return os.date("%Y/%m/%d")
+    end),
+    s("time", function()
+      return os.date("%Y/%m/%d %H:%M:%S")
+    end),
+    s("todo", function()
+      return vim.bo.commentstring:gsub("%%s", "TODO: ")
+    end),
+    s("lorem", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+    s("uuid", function()
+      local random = math.random
+      local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+      return string.gsub(template, "[xy]", function(c)
+        local v = (c == "x") and random(0, 0xf) or random(8, 0xb)
+        return string.format("%x", v)
+      end)
+    end),
+  },
   python = {
     s("pudb", "import pudb; pudb.set_trace()"),
     s("docs", '"""\n$0\n"""'),
@@ -46,10 +45,10 @@ local snippets_by_filetype = {
 
 local function get_buf_snips()
   local ft = vim.bo.filetype
-  local snips = vim.list_slice(global_snippets)
+  local snips = vim.list_slice(snippets["global"])
 
-  if ft and snippets_by_filetype[ft] then
-    vim.list_extend(snips, snippets_by_filetype[ft])
+  if ft and snippets[ft] then
+    vim.list_extend(snips, snippets[ft])
   end
 
   return snips
