@@ -67,18 +67,6 @@ return {
         vim.diagnostic.goto_next()
       end, opts)
 
-      -- if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-      --   vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-      --     callback = function()
-      --       vim.lsp.inlay_hint.enable(true)
-      --     end,
-      --   })
-      --   vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-      --     callback = function()
-      --       vim.lsp.inlay_hint.enable(false)
-      --     end,
-      --   })
-      -- end
       client.server_capabilities.semanticTokensProvider = nil
     end
 
