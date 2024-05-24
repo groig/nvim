@@ -10,6 +10,9 @@ return {
     s("time", function()
       return os.date("%Y/%m/%d %H:%M:%S")
     end),
+    s("timest", function()
+      return tostring(os.time())
+    end),
     s("todo", function()
       return vim.bo.commentstring:gsub("%%s", "TODO: ")
     end),
@@ -28,6 +31,7 @@ return {
     s("docs", '"""\n$0\n"""'),
     s("timer", "import time\nstart_time = time.time()\n$0\nprint('Execution Time:', time.time() - start_time)"),
     s("nq", "# noqa"),
+    s("pr", "print($0)"),
   },
   javascript = {
     s("cl", "console.log($0);"),
