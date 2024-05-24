@@ -41,10 +41,6 @@ set.ignorecase = true
 set.smartcase = true
 set.conceallevel = 2
 
--- tags
-set.tags = "tags;/"
-set.tagrelative = false
-
 -- displaying text
 set.scrolloff = 5
 set.display = "truncate"
@@ -59,7 +55,6 @@ set.listchars = {
 }
 
 -- syntax, highlighting and spelling
-set.synmaxcol = 1024
 set.termguicolors = true
 set.cursorline = true
 
