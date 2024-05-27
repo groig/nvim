@@ -16,7 +16,6 @@ return {
         })
       end,
     },
-    "hrsh7th/cmp-nvim-lsp",
     {
       "SmiteshP/nvim-navic",
       config = function()
