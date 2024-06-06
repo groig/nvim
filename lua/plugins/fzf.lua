@@ -6,6 +6,7 @@ return {
     "<leader>p",
     "<leader>t",
     "<leader>b",
+    "<leader>h",
   },
   config = function()
     local fzf = require("fzf-lua")
