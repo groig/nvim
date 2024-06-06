@@ -2,6 +2,11 @@ local function s(trigger, body)
   return { trigger = trigger, body = body }
 end
 
+local elixir_snippets = {
+  s("p", "|> "),
+  s("el", "<%= $0 %>"),
+  s("ec", "<% $0 %>"),
+}
 return {
   global = {
     s("date", function()
@@ -41,4 +46,6 @@ return {
     s("img", "![$0]($1)"),
     s("code", "```\n$0\n```"),
   },
+  elixir = elixir_snippets,
+  heex = elixir_snippets,
 }
