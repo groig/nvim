@@ -97,6 +97,9 @@ set.foldenable = false
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 
+-- diff mode
+set.diffopt = "internal,algorithm:histogram,indent-heuristic,vertical"
+
 -- mapping
 set.timeoutlen = 400
 set.ttimeoutlen = 50
