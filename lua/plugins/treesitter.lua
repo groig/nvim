@@ -39,6 +39,7 @@ return {
       "php",
       "query",
       "regex",
+      "robots",
       "sql",
       "ssh_config",
       "toml",
