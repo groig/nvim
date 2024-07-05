@@ -1,7 +1,5 @@
-local map = vim.keymap.set
 return {
   "ibhagwan/fzf-lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
     "<leader>p",
     "<leader>t",
@@ -23,6 +21,8 @@ return {
       end
       return { winopts = { height = h, width = 0.60, row = 0.40 } }
     end)
+
+    local map = vim.keymap.set
     map("n", "<leader>p", function()
       fzf.files()
     end, { noremap = true })
