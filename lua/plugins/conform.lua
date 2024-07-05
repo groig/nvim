@@ -32,7 +32,7 @@ return {
     formatters = {
       ruff_fix = {
         inherit = true,
-        prepend_args = { "--extend-select", "I" },
+        append_args = { "--extend-select", "I" },
       },
       djlint = {
         inherit = true,
