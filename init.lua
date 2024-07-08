@@ -56,7 +56,7 @@ set.listchars = {
 set.termguicolors = true
 set.cursorline = true
 
-set.guifont = "Iosevka Light:h11"
+set.guifont = "Iosevka Light:h14"
 vim.g["neovide_cursor_animation_length"] = 0.05
 vim.g["neovide_cursor_trail_size"] = 0
 set.linespace = 2
