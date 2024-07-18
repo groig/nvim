@@ -1,4 +1,7 @@
 return {
-  "OXY2DEV/markview.nvim",
+  "MeanderingProgrammer/markdown.nvim",
   event = "BufReadPost",
+  config = function()
+    require("render-markdown").setup({})
+  end,
 }
