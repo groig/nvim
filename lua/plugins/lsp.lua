@@ -60,10 +60,10 @@ return {
         vim.diagnostic.setloclist()
       end, opts)
       bmap("n", "[d", function()
-        vim.diagnostic.goto_prev()
+        vim.diagnostic.jump({ count = 1 })
       end, opts)
       bmap("n", "]d", function()
-        vim.diagnostic.goto_next()
+        vim.diagnostic.jump({ count = -1 })
       end, opts)
 
       client.server_capabilities.semanticTokensProvider = nil
