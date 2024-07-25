@@ -16,7 +16,7 @@ return {
             pathToFile = "./TODO",
           },
           bo = {
-            filetype = "md",
+            filetype = "markdown",
           },
         },
         wo = {
