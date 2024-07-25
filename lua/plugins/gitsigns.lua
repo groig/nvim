@@ -9,6 +9,7 @@ return {
     })
     local gitsigns = require("gitsigns")
     vim.keymap.set("n", "<leader>g", gitsigns.toggle_current_line_blame, {})
+    vim.keymap.set("n", "<leader>gb", gitsigns.blame, {})
     vim.keymap.set("n", "<leader>d", gitsigns.diffthis, {})
   end,
 }
