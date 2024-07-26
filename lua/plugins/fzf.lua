@@ -9,6 +9,7 @@ return {
   config = function()
     local fzf = require("fzf-lua")
     fzf.setup({
+      defaults = { file_icons = "mini" },
       fzf_opts = { ["--layout"] = "default" },
     })
     fzf.register_ui_select(function(_, items)
