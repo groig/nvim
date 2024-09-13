@@ -147,7 +147,7 @@ return {
     }))
 
     local servers = {
-      "tsserver",
+      "ts_ls",
       "jedi_language_server",
       "bashls",
       "gopls",

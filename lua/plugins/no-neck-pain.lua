@@ -1,6 +1,5 @@
 return {
   "shortcuts/no-neck-pain.nvim",
-
   keys = {
     "<leader>n",
   },
