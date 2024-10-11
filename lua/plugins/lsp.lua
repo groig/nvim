@@ -69,11 +69,7 @@ return {
       client.server_capabilities.semanticTokensProvider = nil
     end
 
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-
     local lsp_options = {
-      capabilities = capabilities,
       on_attach = on_attach,
       single_file_support = true,
     }
@@ -172,7 +168,7 @@ return {
       underline = false,
       update_in_insert = true,
       severity_sort = true,
-      float = { source = "always", border = "rounded" },
+      float = { source = true, border = "rounded" },
     })
   end,
 }

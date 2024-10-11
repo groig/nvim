@@ -33,9 +33,9 @@ if ($TERM =~ '256' || &t_Co >= 256) || has("gui_running")
     hi Todo ctermbg=NONE ctermfg=NONE cterm=reverse guibg=NONE guifg=NONE gui=reverse
     hi Type ctermbg=NONE ctermfg=103 cterm=NONE guibg=NONE guifg=#8787af gui=NONE
     hi Underlined ctermbg=NONE ctermfg=66 cterm=underline guibg=NONE guifg=#5f8787 gui=underline
-    hi Pmenu ctermbg=238 ctermfg=250 cterm=NONE guibg=#444444 guifg=#bcbcbc gui=NONE
+    hi Pmenu ctermbg=238 ctermfg=250 cterm=NONE guibg=#262626 guifg=#bcbcbc gui=NONE
     hi PmenuSbar ctermbg=240 ctermfg=NONE cterm=NONE guibg=#585858 guifg=NONE gui=NONE
-    hi PmenuSel ctermbg=66 ctermfg=237 cterm=NONE guibg=#5f8787 guifg=#262626 gui=NONE
+    hi PmenuSel ctermbg=66 ctermfg=237 cterm=NONE guibg=#87afd7 guifg=#262626 gui=NONE
     hi PmenuThumb ctermbg=66 ctermfg=66 cterm=NONE guibg=#5f8787 guifg=#5f8787 gui=NONE
     hi ErrorMsg ctermbg=237 ctermfg=131 cterm=reverse guibg=#262626 guifg=#af5f5f gui=reverse
     hi ModeMsg ctermbg=237 ctermfg=108 cterm=reverse guibg=#262626 guifg=#87af87 gui=reverse
@@ -271,6 +271,26 @@ highlight! link CmpItemKindMethod CmpItemKindFunction
 highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
 highlight! link CmpItemKindProperty CmpItemKindKeyword
 highlight! link CmpItemKindUnit CmpItemKindKeyword
+
+
+highlight! link BlinkCmpMenu NormalFloat
+highlight! link BlinkCmpMenuBorder FloatBorder
+
+
+" light blue
+highlight! link BlinkCmpKind Normal
+highlight! BlinkCmpKindVariable guibg=NONE guifg=#9CDCFE
+highlight! link BlinkCmpKindInterface CmpItemKindVariable
+highlight! link BlinkCmpKindText CmpItemKindVariable
+" pink
+highlight! BlinkCmpKindFunction guibg=NONE guifg=#C586C0
+highlight! link BlinkCmpKindMethod CmpItemKindFunction
+" front
+highlight! BlinkCmpKindClass guibg=NONE guifg=#5f875f
+highlight! BlinkCmpKindKeyword guibg=NONE guifg=#D4D4D4
+highlight! link BlinkCmpKindProperty CmpItemKindKeyword
+highlight! link BlinkCmpKindUnit CmpItemKindKeyword
+
 
 highlight! MiniIndentscopeSymbol guifg=#404040
 

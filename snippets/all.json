@@ -1,0 +1,32 @@
+{
+  "Insert current date": {
+    "prefix": "date",
+    "body": "${CURRENT_YEAR}/${CURRENT_MONTH}/${CURRENT_DATE}",
+    "description": "Insert current date"
+  },
+  "Insert current time": {
+    "prefix": "time",
+    "body": "${CURRENT_YEAR}/${CURRENT_MONTH}/${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}",
+    "description": "Insert current date and time"
+  },
+  "Insert current timestamp": {
+    "prefix": "timest",
+    "body": "${CURRENT_SECONDS_UNIX}",
+    "description": "Insert current Unix timestamp"
+  },
+  "Insert TODO comment": {
+    "prefix": "todo",
+    "body": "${COMMENT_START}TODO: $0${COMMENT_END}",
+    "description": "Insert a TODO comment"
+  },
+  "Insert Lorem Ipsum": {
+    "prefix": "lorem",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "description": "Insert Lorem Ipsum text"
+  },
+  "Generate UUID": {
+    "prefix": "uuid",
+    "body": "${UUID}",
+    "description": "Generate a UUID"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "Insert PuDB debugger": {
+    "prefix": "pudb",
+    "body": "import pudb; pudb.set_trace()",
+    "description": "Insert PuDB debugger"
+  },
+  "Insert docstring": {
+    "prefix": "docs",
+    "body": [
+      "\"\"\"",
+      "$0",
+      "\"\"\""
+    ],
+    "description": "Insert a docstring"
+  },
+  "Insert timer": {
+    "prefix": "timer",
+    "body": [
+      "import time",
+      "start_time = time.time()",
+      "$0",
+      "print('Execution Time:', time.time() - start_time)"
+    ],
+    "description": "Insert a timer to measure execution time"
+  },
+  "Insert noqa comment": {
+    "prefix": "nq",
+    "body": "# noqa",
+    "description": "Insert a noqa comment"
+  },
+  "Insert print statement": {
+    "prefix": "pr",
+    "body": "print($0)",
+    "description": "Insert a print statement"
+  },
+  "Insert verbose_name": {
+    "prefix": "vn",
+    "body": "verbose_name=_(\"$0\")",
+    "description": "Insert a verbose_name attribute"
+  }
+}

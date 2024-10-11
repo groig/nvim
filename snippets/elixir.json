@@ -1,0 +1,17 @@
+{
+  "Insert pipe operator": {
+    "prefix": "p",
+    "body": "|> ",
+    "description": "Insert the pipe operator"
+  },
+  "Insert embedded Elixir expression": {
+    "prefix": "el",
+    "body": "<%= $0 %>",
+    "description": "Insert an embedded Elixir expression"
+  },
+  "Insert embedded Elixir code": {
+    "prefix": "ec",
+    "body": "<% $0 %>",
+    "description": "Insert embedded Elixir code"
+  }
+}

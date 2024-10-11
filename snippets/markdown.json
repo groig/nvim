@@ -1,0 +1,21 @@
+{
+  "Insert link": {
+    "prefix": "link",
+    "body": "[$0]($1)",
+    "description": "Insert a Markdown link"
+  },
+  "Insert image": {
+    "prefix": "img",
+    "body": "![$0]($1)",
+    "description": "Insert a Markdown image"
+  },
+  "Insert code block": {
+    "prefix": "code",
+    "body": [
+      "```",
+      "$0",
+      "```"
+    ],
+    "description": "Insert a Markdown code block"
+  }
+}
