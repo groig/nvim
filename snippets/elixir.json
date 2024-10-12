@@ -13,5 +13,26 @@
     "prefix": "ec",
     "body": "<% $0 %>",
     "description": "Insert embedded Elixir code"
+  },
+  "Module definition": {
+    "prefix": "defm",
+    "body": ["defmodule ${1:ModuleName} do", "  ${0}", "end"],
+    "description": "Define a new module"
+  },
+  "Function definition": {
+    "prefix": "def",
+    "body": ["def ${1:function_name}(${2:args}) do", "  ${0}", "end"],
+    "description": "Define a new function"
+  },
+  "Anonymous function": {
+    "prefix": "fn",
+    "body": "fn ${1:args} -> ${0} end",
+    "description": "Anonymous function"
+  },
+  "Pipe operator with function": {
+    "prefix": "pf",
+    "body": "|> ${1:function}(${0})",
+    "description": "Pipe operator with function call"
   }
 }
+

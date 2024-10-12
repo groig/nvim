@@ -3,5 +3,20 @@
     "prefix": "cl",
     "body": "console.log($0);",
     "description": "Insert a console.log statement"
+  },
+  "Arrow function": {
+    "prefix": "af",
+    "body": "const ${1:functionName} = (${2:params}) => {\n    ${0}\n}",
+    "description": "Arrow function"
+  },
+  "Async function": {
+    "prefix": "asn",
+    "body": [
+      "async function ${1:functionName}(${2:params}) {",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Async function declaration"
   }
 }
+

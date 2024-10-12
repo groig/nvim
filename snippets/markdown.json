@@ -11,11 +11,28 @@
   },
   "Insert code block": {
     "prefix": "code",
-    "body": [
-      "```",
-      "$0",
-      "```"
-    ],
+    "body": ["```", "$0", "```"],
     "description": "Insert a Markdown code block"
+  },
+  "Checkbox": {
+    "prefix": "check",
+    "body": "- [ ] ${0:Task description}",
+    "description": "Markdown checkbox"
+  },
+  "Table": {
+    "prefix": "table",
+    "body": [
+      "| ${1:Column1} | ${2:Column2} | ${3:Column3} |",
+      "|-------------|-------------|-------------|",
+      "| ${4:Row1C1}  | ${5:Row1C2}  | ${6:Row1C3}  |",
+      "${0}"
+    ],
+    "description": "Markdown table"
+  },
+  "Fenced code block": {
+    "prefix": "fence",
+    "body": ["```${1:language}", "${0}", "```"],
+    "description": "Fenced code block with optional language"
   }
 }
+

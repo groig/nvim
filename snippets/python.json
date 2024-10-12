@@ -6,11 +6,7 @@
   },
   "Insert docstring": {
     "prefix": "docs",
-    "body": [
-      "\"\"\"",
-      "$0",
-      "\"\"\""
-    ],
+    "body": ["\"\"\"", "$0", "\"\"\""],
     "description": "Insert a docstring"
   },
   "Insert timer": {
@@ -37,5 +33,47 @@
     "prefix": "vn",
     "body": "verbose_name=_(\"$0\")",
     "description": "Insert a verbose_name attribute"
+  },
+  "if __name__ == '__main__'": {
+    "prefix": "ifmain",
+    "body": ["if __name__ == '__main__':", "    ${1:main()}$0"],
+    "description": "Python main function boilerplate"
+  },
+  "List comprehension": {
+    "prefix": "lc",
+    "body": "[${1:expression} for ${2:item} in ${3:iterable}]$0",
+    "description": "List comprehension"
+  },
+  "Try/Except": {
+    "prefix": "try",
+    "body": [
+      "try:",
+      "    ${1:pass}",
+      "except ${2:Exception} as ${3:e}:",
+      "    ${0:pass}"
+    ],
+    "description": "Try/Except block"
+  },
+  "Context manager": {
+    "prefix": "with",
+    "body": ["with ${1:expression} as ${2:variable}:", "    ${0:pass}"],
+    "description": "Context manager (with statement)"
+  },
+  "Decorator": {
+    "prefix": "deco",
+    "body": [
+      "def ${1:decorator_name}(func):",
+      "    def wrapper(*args, **kwargs):",
+      "        # Do something before",
+      "        result = func(*args, **kwargs)",
+      "        # Do something after",
+      "        return result",
+      "    return wrapper",
+      "",
+      "@${1:decorator_name}",
+      "def ${2:function_name}(${3:parameters}):",
+      "    ${0:pass}"
+    ],
+    "description": "Create a decorator and apply it to a function"
   }
 }
