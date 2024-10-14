@@ -103,11 +103,6 @@ return {
       cmd = { "/home/roig/src/lexical/_build/prod/package/lexical/bin/start_lexical.sh" },
     }))
 
-    -- lspconfig.elixirls.setup(vim.tbl_extend("force", lsp_options, {
-    --   cmd = { "elixir-ls" },
-    --   settings = { elixirLS = { dialyzerEnabled = false } },
-    -- }))
-
     lspconfig.html.setup(vim.tbl_extend("force", lsp_options, {
       filetypes = { "html", "elixir", "eelixir", "heex" },
     }))
