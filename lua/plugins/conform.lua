@@ -36,7 +36,7 @@ return {
       },
       djlint = {
         inherit = true,
-        prepend_args = { "--profile", "django" },
+        prepend_args = { "--profile", "django", "--indent", "2", "--indent-css", "2", "--indent-js", "2" },
       },
     },
     format_on_save = false,
