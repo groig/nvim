@@ -277,20 +277,57 @@ highlight! link BlinkCmpMenu NormalFloat
 highlight! link BlinkCmpMenuBorder FloatBorder
 
 
-" light blue
-highlight! link BlinkCmpKind Normal
-highlight! BlinkCmpKindVariable guibg=NONE guifg=#9CDCFE
-highlight! link BlinkCmpKindInterface CmpItemKindVariable
-highlight! link BlinkCmpKindText CmpItemKindVariable
-" pink
-highlight! BlinkCmpKindFunction guibg=NONE guifg=#C586C0
-highlight! link BlinkCmpKindMethod CmpItemKindFunction
-" front
-highlight! BlinkCmpKindClass guibg=NONE guifg=#5f875f
-highlight! BlinkCmpKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! link BlinkCmpKindProperty CmpItemKindKeyword
-highlight! link BlinkCmpKindUnit CmpItemKindKeyword
+" Dark gray (for normal kind)
+highlight! BlinkCmpKind guibg=NONE guifg=#444444
 
+" Blue group (for variables, interfaces, text)
+highlight! BlinkCmpKindVariable guibg=NONE guifg=#87afd7
+highlight! BlinkCmpKindInterface guibg=NONE guifg=#87afd7
+highlight! BlinkCmpKindText guibg=NONE guifg=#87afd7
+
+" Purple group (for functions, methods)
+highlight! BlinkCmpKindFunction guibg=NONE guifg=#8787af
+highlight! BlinkCmpKindMethod guibg=NONE guifg=#8787af
+
+" Green group (for classes, structs)
+highlight! BlinkCmpKindClass guibg=NONE guifg=#5f875f
+highlight! BlinkCmpKindStruct guibg=NONE guifg=#5f875f
+
+" Light gray group (for keywords, properties, units)
+highlight! BlinkCmpKindKeyword guibg=NONE guifg=#6c6c6c
+highlight! BlinkCmpKindProperty guibg=NONE guifg=#6c6c6c
+highlight! BlinkCmpKindUnit guibg=NONE guifg=#6c6c6c
+
+" Orange group (for constructors, fields)
+highlight! BlinkCmpKindConstructor guibg=NONE guifg=#ff8700
+highlight! BlinkCmpKindField guibg=NONE guifg=#ff8700
+
+" Light green group (for constants, values)
+highlight! BlinkCmpKindConstant guibg=NONE guifg=#87af87
+highlight! BlinkCmpKindValue guibg=NONE guifg=#87af87
+
+" Dark purple group (for enums, enum members)
+highlight! BlinkCmpKindEnum guibg=NONE guifg=#5f5f87
+highlight! BlinkCmpKindEnumMember guibg=NONE guifg=#5f5f87
+
+" Cyan group (for modules, snippets)
+highlight! BlinkCmpKindModule guibg=NONE guifg=#5fafaf
+highlight! BlinkCmpKindSnippet guibg=NONE guifg=#5fafaf
+
+" Red group (for events, operators)
+highlight! BlinkCmpKindEvent guibg=NONE guifg=#af5f5f
+highlight! BlinkCmpKindOperator guibg=NONE guifg=#af5f5f
+
+" Light blue (for type parameters)
+highlight! BlinkCmpKindTypeParameter guibg=NONE guifg=#5f87af
+
+" Yellow group (for files, folders)
+highlight! BlinkCmpKindFile guibg=NONE guifg=#ffffaf
+highlight! BlinkCmpKindFolder guibg=NONE guifg=#ffffaf
+
+" Medium gray group (for references, colors)
+highlight! BlinkCmpKindReference guibg=NONE guifg=#6c6c6c
+highlight! BlinkCmpKindColor guibg=NONE guifg=#6c6c6c
 
 highlight! MiniIndentscopeSymbol guifg=#404040
 
