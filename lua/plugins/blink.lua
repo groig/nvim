@@ -3,53 +3,26 @@ return {
   build = "cargo build --release",
   lazy = false,
   config = function()
-    local kinds = {
-      "Text",
-      "Method",
-      "Function",
-      "Constructor",
-      "Field",
-      "Variable",
-      "Property",
-      "Class",
-      "Interface",
-      "Struct",
-      "Module",
-      "Unit",
-      "Value",
-      "Enum",
-      "EnumMember",
-      "Keyword",
-      "Constant",
-      "Snippet",
-      "Color",
-      "File",
-      "Reference",
-      "Folder",
-      "Event",
-      "Operator",
-      "TypeParameter",
-    }
-
-    local icons = require("mini.icons")
-    local kind_icons = {}
-    for _, kind in ipairs(kinds) do
-      kind_icons[kind] = icons.get("lsp", kind:lower())
-    end
     require("blink.cmp").setup({
       keymap = {
         accept = "<CR>",
         show = "<C-n>",
+      },
+      accept = {
+        auto_brackets = { enabled = true },
       },
       trigger = {
         signature_help = {
           enabled = true,
         },
       },
-
+      fuzzy = {
+        keyword_range = "full",
+      },
       windows = {
         autocomplete = {
           border = "single",
+          selection = "preselect",
           draw = function(ctx)
             return {
               " ",
