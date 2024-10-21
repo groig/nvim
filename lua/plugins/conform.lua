@@ -30,10 +30,6 @@ return {
       ["*"] = { "trim_whitespace" },
     },
     formatters = {
-      ruff_fix = {
-        inherit = true,
-        append_args = { "--extend-select", "I" },
-      },
       djlint = {
         inherit = true,
         prepend_args = { "--profile", "django", "--indent", "2", "--indent-css", "2", "--indent-js", "2" },
