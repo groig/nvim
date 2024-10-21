@@ -137,9 +137,24 @@ return {
       },
     }))
 
+    lspconfig.basedpyright.setup(vim.tbl_extend("force", lsp_options, {
+      settings = {
+        basedpyright = {
+          analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "openFilesOnly",
+            typeCheckingMode = "off",
+            diagnosticSeverityOverrides = {
+              reportUnusedParameter = false,
+            },
+          },
+        },
+      },
+    }))
+
     local servers = {
       "ts_ls",
-      "jedi_language_server",
       "bashls",
       "gopls",
       "ruff",
