@@ -12,7 +12,7 @@ return {
         left = {
           scratchPad = {
             enabled = true,
-            pathToFile = "./TODO",
+            pathToFile = "./TODO.md",
           },
           bo = {
             filetype = "markdown",
