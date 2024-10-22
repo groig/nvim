@@ -5,7 +5,7 @@ return {
   config = function()
     require("blink.cmp").setup({
       keymap = {
-        accept = "<CR>",
+        select_and_accept = "<CR>",
         show = "<C-n>",
       },
       accept = {
@@ -22,7 +22,7 @@ return {
       windows = {
         autocomplete = {
           border = "single",
-          selection = "preselect",
+          selection = "auto_insert",
           draw = function(ctx)
             return {
               " ",
