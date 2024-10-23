@@ -18,6 +18,7 @@ return {
       },
       fuzzy = {
         keyword_range = "full",
+        use_typo_resistance = false,
       },
       windows = {
         autocomplete = {
