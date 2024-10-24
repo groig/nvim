@@ -52,7 +52,6 @@ return {
           border = "single",
         },
       },
-      kind_icons = kind_icons,
     })
   end,
 }
