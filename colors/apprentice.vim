@@ -273,6 +273,9 @@ highlight! link CmpItemKindProperty CmpItemKindKeyword
 highlight! link CmpItemKindUnit CmpItemKindKeyword
 
 
+highlight! NormalFloat guibg=NONE
+highlight! FloatBorder guibg=NONE guifg=#505050
+
 highlight! link BlinkCmpMenu NormalFloat
 highlight! link BlinkCmpMenuBorder FloatBorder
 

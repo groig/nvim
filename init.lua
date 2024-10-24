@@ -9,25 +9,16 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   once = true,
 })
 
-local hl = vim.api.nvim_set_hl
 local set = vim.opt
 local map = vim.keymap.set
 local autocmd = vim.api.nvim_create_autocmd
-
-autocmd("colorscheme", {
-  pattern = "*",
-  callback = function(opts)
-    hl(0, "NormalFloat", { bg = "none" })
-    hl(0, "FloatBorder", { bg = "none", fg = "#505050" })
-  end,
-})
 
 local scheme = vim.fn.system({ "gsettings", "get", "org.gnome.desktop.interface", "color-scheme" })
 
 if scheme == "'prefer-dark'\n" then
   vim.cmd.colorscheme("apprentice")
 else
-  vim.cmd.colorscheme("base16-github")
+  vim.cmd.colorscheme("light")
 end
 
 set.completeopt = "menu,menuone,noselect"
