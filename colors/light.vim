@@ -11,7 +11,7 @@ let g:colors_name = "light"
 
 " GUI color definitions
 let s:gui00 = "#000000"
-let s:gui01 = "#ff3333"
+let s:gui01 = "#B33333"
 let s:gui02 = "#36A168"
 let s:gui03 = "#B58900"
 let s:gui04 = "#3366ff"
@@ -19,7 +19,7 @@ let s:gui05 = "#6056a5"
 let s:gui06 = "#00aaaa"
 let s:gui07 = "#bbbbbb"
 let s:gui08 = "#444444"
-let s:gui09 = "#ff4444"
+let s:gui09 = "#CC3333"
 let s:gui0A = "#3DAE6E"
 let s:gui0B = "#B58900"
 let s:gui0C = "#4477ff"
@@ -89,26 +89,26 @@ call <sid>hi("Pmenu", s:guiFG, s:guiBG, s:cterm00, "254", "", "")
 call <sid>hi("PmenuSel", s:gui0D, s:gui0F, s:cterm00, s:cterm04, "", "")
 
 " Syntax highlighting
-call <sid>hi("Comment", "#666666", "", s:cterm07, "", "italic", "")
-call <sid>hi("Constant", s:gui04, "", s:cterm04, "", "", "")
+call <sid>hi("Constant", s:gui02, "", s:cterm02, "", "", "")
 call <sid>hi("String", s:gui02, "", s:cterm02, "", "", "")
-call <sid>hi("Character", s:gui02, "", s:cterm02, "", "", "")
 call <sid>hi("Number", s:gui04, "", s:cterm04, "", "", "")
 call <sid>hi("Boolean", s:gui04, "", s:cterm04, "", "", "")
+call <sid>hi("Character", s:gui02, "", s:cterm02, "", "", "")
 call <sid>hi("Float", s:gui04, "", s:cterm04, "", "", "")
 call <sid>hi("Identifier", s:gui05, "", s:cterm05, "", "NONE", "")
 call <sid>hi("Function", s:gui0D, "", s:cterm0D, "", "", "")
-call <sid>hi("Statement", s:gui04, "", s:cterm04, "", "", "")
-call <sid>hi("Conditional", s:gui04, "", s:cterm04, "", "", "")
-call <sid>hi("Repeat", s:gui04, "", s:cterm04, "", "", "")
-call <sid>hi("Label", s:gui04, "", s:cterm04, "", "", "")
-call <sid>hi("Operator", s:gui04, "", s:cterm04, "", "", "")
-call <sid>hi("Keyword", s:gui04, "", s:cterm04, "", "", "")
+call <sid>hi("Statement", s:gui05, "", s:cterm05, "", "", "")
+call <sid>hi("Conditional", s:gui05, "", s:cterm05, "", "", "")
+call <sid>hi("Repeat", s:gui06, "", s:cterm06, "", "", "")
+call <sid>hi("Label", s:gui06, "", s:cterm06, "", "", "")
+call <sid>hi("Operator", s:gui06, "", s:cterm06, "", "", "")
+call <sid>hi("Keyword", s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("PreProc", s:gui05, "", s:cterm05, "", "", "")
-call <sid>hi("Type", s:gui04, "", s:cterm04, "", "", "")
+call <sid>hi("Type", s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("Special", s:gui05, "", s:cterm05, "", "", "")
 call <sid>hi("Error", s:gui01, s:guiBG, s:cterm01, "NONE", "", "")
 call <sid>hi("Todo", s:gui03, s:guiBG, s:cterm03, "NONE", "bold", "")
+
 
 " Git highlighting
 call <sid>hi("gitcommitOverflow", s:gui01, "", s:cterm01, "", "", "")
