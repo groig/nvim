@@ -1,5 +1,5 @@
 {
-  "blink.cmp": { "branch": "main", "commit": "81ce82e0ea71a310100122f2c5fbb12c930c682b" },
+  "blink.cmp": { "branch": "main", "commit": "a62b555393437e19da7b21ba204eedde3881be21" },
   "conform.nvim": { "branch": "master", "commit": "6a28c90082a67f62a323ab90d988e000a718a8c7" },
   "fzf-lua": { "branch": "main", "commit": "ce1e24f2a48089b65deefcb0a71a9856839002b5" },
   "gitsigns.nvim": { "branch": "main", "commit": "2d725fdd7fe4a612fa3171ca0a965f455d8dc325" },

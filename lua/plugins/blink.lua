@@ -7,6 +7,12 @@ return {
       keymap = {
         ["<CR>"] = { "select_and_accept" },
         ["<C-n>"] = { "show", "select_next" },
+        ["<C-p>"] = { "show", "select_prev" },
+        ["<C-e>"] = { "hide" },
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+        ["<Tab>"] = { "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
       },
       accept = {
         auto_brackets = { enabled = true },
