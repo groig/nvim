@@ -5,8 +5,8 @@ return {
   config = function()
     require("blink.cmp").setup({
       keymap = {
-        select_and_accept = "<CR>",
-        show = "<C-n>",
+        ["<CR>"] = { "select_and_accept" },
+        ["<C-n>"] = { "show", "select_next" },
       },
       accept = {
         auto_brackets = { enabled = true },
