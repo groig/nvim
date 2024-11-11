@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   build = "cargo build --release",
-  lazy = false,
+  event = "InsertEnter",
   config = function()
     require("blink.cmp").setup({
       keymap = {
