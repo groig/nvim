@@ -30,23 +30,9 @@ return {
         autocomplete = {
           border = "single",
           selection = "auto_insert",
-          draw = function(ctx)
-            return {
-              " ",
-              {
-                ctx.kind_icon,
-                ctx.icon_gap,
-                ctx.item.label,
-                ctx.kind == "Snippet" and "~" or nil,
-                fill = true,
-                hl_group = ctx.deprecated and "BlinkCmpLabelDeprecated" or "BlinkCmpLabel",
-                max_width = 50,
-              },
-              " ",
-              { ctx.kind, hl_group = "BlinkCmpKind" .. ctx.kind },
-              " ",
-            }
-          end,
+          draw = {
+            columns = { { "kind_icon" }, { "label", "kind", gap = 1 } },
+          },
         },
         documentation = {
           border = "single",
