@@ -44,6 +44,11 @@ return {
           border = "single",
         },
       },
+
+      highlight = {
+        ns = vim.api.nvim_create_namespace("blink_cmp"),
+        use_nvim_cmp_as_default = true,
+      },
     })
   end,
 }
