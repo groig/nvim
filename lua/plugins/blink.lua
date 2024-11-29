@@ -14,39 +14,48 @@ return {
         ["<Tab>"] = { "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
       },
-      accept = {
-        auto_brackets = { enabled = true },
-      },
-      trigger = {
-        signature_help = {
-          enabled = true,
+      completion = {
+        keyword = {
+          range = "full",
         },
-      },
-      fuzzy = {
-        keyword_range = "full",
-        use_typo_resistance = false,
-      },
-      windows = {
-        autocomplete = {
-          border = "single",
+        trigger = {
+          show_in_snippet = false,
+        },
+        list = {
+          max_items = 10,
           selection = "auto_insert",
+        },
+        menu = {
+          border = "single",
           draw = {
-            columns = { { "kind_icon" }, { "label", "kind", gap = 1 } },
+            columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 1 } },
           },
         },
         documentation = {
-          border = "single",
+          window = {
+            border = "single",
+          },
           auto_show = true,
           auto_show_delay_ms = 100,
-          update_delay_ms = 100,
-        },
-        signature_help = {
-          border = "single",
         },
       },
-
-      highlight = {
-        ns = vim.api.nvim_create_namespace("blink_cmp"),
+      signature = {
+        window = {
+          border = "single",
+        },
+        enabled = true,
+      },
+      sources = {
+        completion = {
+          enabled_providers = { "snippets", "lsp", "path", "buffer" },
+        },
+        providers = {
+          snippets = {
+            score_offset = 1,
+          },
+        },
+      },
+      appearance = {
         use_nvim_cmp_as_default = true,
       },
     })
