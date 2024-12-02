@@ -6,7 +6,7 @@
   },
   "Insert docstring": {
     "prefix": "docs",
-    "body": ["\"\"\"", "$0", "\"\"\""],
+    "body": ["\"\"\"$0", "\"\"\""],
     "description": "Insert a docstring"
   },
   "Insert timer": {
