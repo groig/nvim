@@ -47,9 +47,7 @@ return {
         enabled = true,
       },
       sources = {
-        completion = {
-          enabled_providers = { "snippets", "lsp", "path", "buffer" },
-        },
+        default = { "snippets", "lsp", "path", "buffer" },
         providers = {
           snippets = {
             score_offset = 1,
