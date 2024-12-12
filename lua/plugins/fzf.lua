@@ -28,7 +28,7 @@ return {
       fzf.files()
     end, { noremap = true })
     map("n", "<leader>t", function()
-      fzf.tags({ ctags_autogen = true, cmd = "ctags --quiet -Rf -", fzf_opts = { ["--with-nth"] = "1,2" } })
+      fzf.tags({ ctags_autogen = true, cmd = "ctags --excmd=combine --quiet -Rf -", fzf_opts = { ["--with-nth"] = "1,2" } })
     end, { noremap = true, silent = true })
     map("n", "<leader>b", function()
       fzf.buffers()
