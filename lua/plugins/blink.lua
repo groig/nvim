@@ -29,7 +29,7 @@ return {
           border = "single",
           draw = {
             columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 1 } },
-            treesitter = true,
+            treesitter = { "lsp" },
           },
         },
         documentation = {
@@ -53,6 +53,7 @@ return {
             score_offset = 1,
           },
         },
+        cmdline = {},
       },
       appearance = {
         use_nvim_cmp_as_default = true,
