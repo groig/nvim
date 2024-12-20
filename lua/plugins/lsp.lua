@@ -69,9 +69,11 @@ return {
       client.server_capabilities.semanticTokensProvider = nil
     end
 
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
     local lsp_options = {
       on_attach = on_attach,
       single_file_support = true,
+      capabilities = capabilities,
     }
 
     require("lspconfig").lua_ls.setup({
