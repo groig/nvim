@@ -109,6 +109,16 @@ return {
       filetypes = { "html", "elixir", "eelixir", "heex" },
     }))
 
+    lspconfig.emmet_language_server.setup(vim.tbl_extend("force", lsp_options, {
+      filetypes = {
+        "css",
+        "html",
+        "htmldjango",
+        "heex",
+        "elixir",
+      },
+    }))
+
     lspconfig.tailwindcss.setup(vim.tbl_extend("force", lsp_options, {
       filetypes = { "html", "elixir", "eelixir", "heex" },
       init_options = {
