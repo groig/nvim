@@ -19,7 +19,7 @@ return {
           range = "full",
         },
         trigger = {
-          show_in_snippet = false,
+          prefetch_on_insert = true,
         },
         list = {
           max_items = 10,
@@ -54,6 +54,7 @@ return {
           },
         },
         cmdline = {},
+        min_keyword_length = 3,
       },
       appearance = {
         use_nvim_cmp_as_default = true,
