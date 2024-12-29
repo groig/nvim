@@ -21,6 +21,16 @@ else
   vim.cmd.colorscheme("light")
 end
 
+vim.api.nvim_create_autocmd("TermResponse", {
+  callback = function(args)
+    if vim.go.background == "light" then
+      vim.cmd.colorscheme("light")
+    elseif vim.go.background == "dark" then
+      vim.cmd.colorscheme("apprentice")
+    end
+  end,
+})
+
 set.completeopt = "menu,menuone,noselect"
 set.signcolumn = "yes"
 
