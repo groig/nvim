@@ -5,7 +5,7 @@ return {
   config = function()
     require("blink.cmp").setup({
       keymap = {
-        ["<CR>"] = { "select_and_accept", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
         ["<C-n>"] = { "show", "select_next" },
         ["<C-p>"] = { "show", "select_prev" },
         ["<C-e>"] = { "hide" },
@@ -23,7 +23,6 @@ return {
         },
         list = {
           max_items = 10,
-          selection = "auto_insert",
         },
         menu = {
           border = "single",
@@ -54,7 +53,6 @@ return {
           },
         },
         cmdline = {},
-        min_keyword_length = 3,
       },
       appearance = {
         use_nvim_cmp_as_default = true,
