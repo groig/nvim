@@ -18,9 +18,6 @@ return {
         keyword = {
           range = "full",
         },
-        trigger = {
-          prefetch_on_insert = true,
-        },
         list = {
           max_items = 10,
         },
