@@ -59,21 +59,19 @@ return {
       bmap("n", "<leader>l", function()
         vim.diagnostic.setloclist()
       end, opts)
-      bmap("n", "[d", function()
+      bmap("n", "<leader>d", function()
         vim.diagnostic.jump({ count = 1 })
       end, opts)
-      bmap("n", "]d", function()
+      bmap("n", "<leader>D", function()
         vim.diagnostic.jump({ count = -1 })
       end, opts)
 
       client.server_capabilities.semanticTokensProvider = nil
     end
 
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
     local lsp_options = {
       on_attach = on_attach,
       single_file_support = true,
-      capabilities = capabilities,
     }
 
     require("lspconfig").lua_ls.setup({
@@ -159,6 +157,7 @@ return {
             typeCheckingMode = "off",
             diagnosticSeverityOverrides = {
               reportUnusedParameter = false,
+              reportUnreachable = false,
             },
           },
         },
