@@ -3,20 +3,6 @@ return {
   event = "BufReadPre",
   dependencies = {
     {
-      "seblj/nvim-echo-diagnostics",
-      config = function()
-        require("echo-diagnostics").setup({})
-        vim.opt.updatetime = 250
-
-        vim.api.nvim_create_autocmd("CursorHold", {
-          pattern = "*",
-          callback = function(opts)
-            require("echo-diagnostics").echo_line_diagnostic()
-          end,
-        })
-      end,
-    },
-    {
       "SmiteshP/nvim-navic",
       config = function()
         local navic = require("nvim-navic")
@@ -177,7 +163,7 @@ return {
 
     -- diagnostics
     vim.diagnostic.config({
-      virtual_text = false,
+      virtual_lines = { current_line = true },
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = "● ",
@@ -186,8 +172,6 @@ return {
           [vim.diagnostic.severity.HINT] = "● ",
         },
       },
-      underline = false,
-      update_in_insert = true,
       severity_sort = true,
       float = { source = true, border = "rounded" },
     })
