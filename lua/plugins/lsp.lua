@@ -1,30 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
   event = "BufReadPre",
-  dependencies = {
-    {
-      "SmiteshP/nvim-navic",
-      config = function()
-        local navic = require("nvim-navic")
-        navic.setup({
-          lsp = {
-            auto_attach = true,
-            preference = { "elixirls", "tailwindcss", "html" },
-          },
-        })
-
-        vim.opt.statusline =
-          " %f %{&modified?' +':''} %{&readonly?' ':''}%= %{%v:lua.require'nvim-navic'.get_location()%} %3p%%"
-      end,
-      event = "LspAttach",
-    },
-  },
   config = function()
     local lspconfig = require("lspconfig")
-
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-      border = "rounded",
-    })
 
     local on_attach = function(client, bufnr)
       local opts = { noremap = true, silent = true, buffer = bufnr }

@@ -175,6 +175,8 @@ map("n", "S", "i<CR><Esc>", { noremap = true })
 -- close other window
 map("n", "<leader>c", ":wincmd p | q<CR>", { noremap = true, silent = true })
 
+vim.cmd([[nmap <C-g> :file\|lua print(require'nvim-treesitter.statusline'.statusline({indicator_size=200}))<cr>]])
+
 -- augroups
 autocmd("BufReadPost", {
   pattern = "*",
