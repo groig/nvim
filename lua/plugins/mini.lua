@@ -20,7 +20,6 @@ return {
         hex_color = hipatterns.gen_highlighter.hex_color(),
       },
     })
-    require("mini.pairs").setup()
     require("mini.icons").setup()
     require("mini.icons").mock_nvim_web_devicons()
   end,
