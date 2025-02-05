@@ -20,12 +20,12 @@ return {
     },
     {
       "y",
-      desc = "yak",
+      desc = "yank",
       mode = "v",
     },
     {
       "Y",
-      desc = "yak",
+      desc = "yank",
       mode = "v",
     },
   },
