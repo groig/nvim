@@ -151,7 +151,7 @@ return {
         },
       },
       severity_sort = true,
-      float = { source = true, border = "rounded" },
+      float = { source = "if_many", border = "rounded" },
     })
   end,
 }
