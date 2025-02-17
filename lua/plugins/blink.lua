@@ -27,6 +27,9 @@ return {
             columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 1 } },
             treesitter = { "lsp" },
           },
+          auto_show = function(ctx)
+            return ctx.mode ~= "cmdline"
+          end,
         },
         documentation = {
           window = {
@@ -43,8 +46,17 @@ return {
         enabled = true,
       },
       sources = {
-        default = { "snippets", "lsp", "path", "buffer" },
-        cmdline = {},
+        providers = {
+          buffer = {
+            opts = {
+              get_bufnrs = function()
+                return vim.tbl_filter(function(bufnr)
+                  return vim.bo[bufnr].buftype == ""
+                end, vim.api.nvim_list_bufs())
+              end,
+            },
+          },
+        },
       },
       appearance = {
         use_nvim_cmp_as_default = true,
