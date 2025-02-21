@@ -14,6 +14,9 @@ return {
         ["<Tab>"] = { "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
       },
+      cmdline = {
+        enabled = false,
+      },
       completion = {
         keyword = {
           range = "full",
@@ -27,9 +30,6 @@ return {
             columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 1 } },
             treesitter = { "lsp" },
           },
-          auto_show = function(ctx)
-            return ctx.mode ~= "cmdline"
-          end,
         },
         documentation = {
           window = {
