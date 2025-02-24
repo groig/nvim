@@ -187,7 +187,8 @@ autocmd("BufReadPost", {
 -- lsp config
 autocmd("LspAttach", {
   callback = function(args)
-    -- local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    client.server_capabilities.semanticTokensProvider = nil
     local opts = { noremap = true, silent = true, buffer = args.buf }
     map("n", "K", vim.lsp.buf.hover, opts)
     map("n", "<leader>a", vim.lsp.buf.code_action, opts)
