@@ -25,9 +25,7 @@ return {
     end)
 
     local map = vim.keymap.set
-    map("n", "<leader>p", function()
-      fzf.files()
-    end, { noremap = true })
+    map("n", "<leader>p", fzf.files, { noremap = true })
     map("n", "<leader>t", function()
       fzf.tags({
         ctags_autogen = true,
@@ -35,11 +33,7 @@ return {
         fzf_opts = { ["--with-nth"] = "1,2" },
       })
     end, { noremap = true, silent = true })
-    map("n", "<leader>b", function()
-      fzf.buffers()
-    end, { noremap = true })
-    map("n", "<leader>h", function()
-      fzf.helptags()
-    end, { noremap = true })
+    map("n", "<leader>b", fzf.buffers, { noremap = true })
+    map("n", "<leader>h", fzf.helptags, { noremap = true })
   end,
 }
