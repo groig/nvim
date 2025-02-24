@@ -1,17 +1,17 @@
 collectgarbage("stop")
 
+local set = vim.opt
+local map = vim.keymap.set
+local autocmd = vim.api.nvim_create_autocmd
+
 jit.off()
-vim.api.nvim_create_autocmd("InsertEnter", {
+autocmd("InsertEnter", {
   callback = function()
     jit.on()
     collectgarbage("restart")
   end,
   once = true,
 })
-
-local set = vim.opt
-local map = vim.keymap.set
-local autocmd = vim.api.nvim_create_autocmd
 
 local scheme = vim.fn.system({ "gsettings", "get", "org.gnome.desktop.interface", "color-scheme" })
 
@@ -22,6 +22,7 @@ else
 end
 
 vim.api.nvim_create_autocmd("TermResponse", {
+  ---@diagnostic disable-next-line: unused-local
   callback = function(args)
     if vim.go.background == "light" then
       vim.cmd.colorscheme("light")
@@ -183,8 +184,50 @@ autocmd("BufReadPost", {
   command = [[silent! normal! g`"zv]],
 })
 
+-- lsp config
+autocmd("LspAttach", {
+  callback = function(args)
+    -- local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local opts = { noremap = true, silent = true, buffer = args.buf }
+    map("n", "K", vim.lsp.buf.hover, opts)
+    map("n", "<leader>a", vim.lsp.buf.code_action, opts)
+    map("n", "<C-f>", vim.lsp.buf.references, opts)
+    map("n", "<leader>e", vim.diagnostic.open_float, opts)
+    map("n", "<leader>l", vim.diagnostic.setloclist, opts)
+    map("n", "<leader>d", function()
+      vim.diagnostic.jump({ count = 1 })
+    end, opts)
+    map("n", "<leader>D", function()
+      vim.diagnostic.jump({ count = -1 })
+    end, opts)
+  end,
+})
+
+vim.lsp.enable({
+  "basedpyright",
+  "lua_ls",
+  "ruff",
+  "ts_ls",
+})
+
+-- diagnostics
+vim.diagnostic.config({
+  virtual_lines = { current_line = true },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "● ",
+      [vim.diagnostic.severity.WARN] = "● ",
+      [vim.diagnostic.severity.INFO] = "● ",
+      [vim.diagnostic.severity.HINT] = "● ",
+    },
+  },
+  severity_sort = true,
+  float = { source = "if_many", border = "rounded" },
+})
+
 -- plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+---@diagnostic disable-next-line: undefined-field
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
