@@ -190,9 +190,8 @@ autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     client.server_capabilities.semanticTokensProvider = nil
     local opts = { noremap = true, silent = true, buffer = args.buf }
-    map("n", "K", vim.lsp.buf.hover, opts)
     map("n", "<leader>a", vim.lsp.buf.code_action, opts)
-    map("n", "<C-f>", vim.lsp.buf.references, opts)
+    map("n", "<leader-f>", vim.lsp.buf.references, opts)
     map("n", "<leader>e", vim.diagnostic.open_float, opts)
     map("n", "<leader>l", vim.diagnostic.setloclist, opts)
     map("n", "<leader>d", function()
