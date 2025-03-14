@@ -9,6 +9,9 @@ return {
         ["<C-n>"] = { "show", "select_next" },
         ["<C-p>"] = { "show", "select_prev" },
       },
+      cmdline = {
+        enabled = false,
+      },
       completion = {
         menu = {
           border = "single",
