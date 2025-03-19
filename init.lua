@@ -68,6 +68,7 @@ set.previewheight = 5
 set.splitbelow = true
 set.splitright = true
 set.splitkeep = "screen"
+set.winborder = "rounded"
 
 -- using the mouse
 set.ruler = false
