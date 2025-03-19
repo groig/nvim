@@ -14,23 +14,16 @@ return {
       },
       completion = {
         menu = {
-          border = "single",
           draw = {
             columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 1 } },
           },
         },
         documentation = {
-          window = {
-            border = "single",
-          },
           auto_show = true,
           auto_show_delay_ms = 100,
         },
       },
       signature = {
-        window = {
-          border = "single",
-        },
         enabled = true,
       },
       appearance = {
