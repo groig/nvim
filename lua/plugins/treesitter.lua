@@ -35,6 +35,7 @@ return {
       "make",
       "markdown",
       "markdown_inline",
+      "po",
       "python",
       "php",
       "query",
