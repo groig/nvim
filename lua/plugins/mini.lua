@@ -2,7 +2,6 @@ return {
   "echasnovski/mini.nvim",
   version = false,
   config = function()
-    require("mini.notify").setup()
     require("mini.cursorword").setup()
     require("mini.indentscope").setup({
       symbol = "▏",
