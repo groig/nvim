@@ -21,6 +21,7 @@ return {
         diagnosticSeverityOverrides = {
           reportUnusedParameter = false,
           reportUnreachable = false,
+          reportUnusedImport = false,
         },
       },
     },
