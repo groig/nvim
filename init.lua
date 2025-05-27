@@ -208,6 +208,7 @@ vim.lsp.enable({
   "basedpyright",
   "lua_ls",
   "ruff",
+  "ty",
   "ts_ls",
 })
 
