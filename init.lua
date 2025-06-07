@@ -13,6 +13,8 @@ autocmd("InsertEnter", {
   once = true,
 })
 
+require('vim._extui').enable({})
+
 local scheme = vim.fn.system({ "gsettings", "get", "org.gnome.desktop.interface", "color-scheme" })
 
 if scheme == "'prefer-dark'\n" then
