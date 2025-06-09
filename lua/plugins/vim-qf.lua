@@ -2,7 +2,7 @@ local map = vim.keymap.set
 return {
   {
     "romainl/vim-qf",
-    event = "BufReadPost",
+    event = "CmdlineEnter",
     config = function()
       vim.g["qf_mapping_ack_style"] = 1
       vim.g["qf_statusline"] = {
