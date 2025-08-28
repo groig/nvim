@@ -195,6 +195,7 @@ autocmd("LspAttach", {
     local opts = { noremap = true, silent = true, buffer = args.buf }
     map("n", "<leader>a", vim.lsp.buf.code_action, opts)
     map("n", "<leader>f", vim.lsp.buf.references, opts)
+    map("n", "<leader>r", vim.lsp.buf.rename, opts)
     map("n", "<leader>e", vim.diagnostic.open_float, opts)
     map("n", "<leader>l", vim.diagnostic.setloclist, opts)
     map("n", "<leader>d", function()
@@ -212,6 +213,7 @@ vim.lsp.enable({
   "ruff",
   "ty",
   "ts_ls",
+  "lexical",
 })
 
 -- diagnostics
