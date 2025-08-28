@@ -43,6 +43,7 @@ return {
       "robots",
       "sql",
       "ssh_config",
+      "todotxt",
       "toml",
       "vim",
       "vimdoc",
