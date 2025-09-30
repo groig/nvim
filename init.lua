@@ -13,7 +13,9 @@ autocmd("InsertEnter", {
   once = true,
 })
 
-require('vim._extui').enable({})
+if not vim.fn.has("gui_running") then
+  require("vim._extui").enable({})
+end
 
 local scheme = vim.fn.system({ "gsettings", "get", "org.gnome.desktop.interface", "color-scheme" })
 
