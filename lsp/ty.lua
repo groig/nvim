@@ -4,7 +4,11 @@ return {
   root_markers = { ".git", "pyproject.toml" },
   settings = {
     ty = {
-      disableLanguageServices = true,
+      experimental = {
+        autoImport = true,
+        rename = true,
+      },
+      diagnosticMode = "openFilesOnly",
     },
   },
 }
