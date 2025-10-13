@@ -216,7 +216,6 @@ vim.lsp.enable({
   "ty",
   "ts_ls",
   "lexical",
-  "codebook",
 })
 
 -- diagnostics
