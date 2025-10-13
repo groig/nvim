@@ -234,34 +234,235 @@ vim.diagnostic.config({
 })
 
 -- plugins
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
----@diagnostic disable-next-line: undefined-field
-if not vim.uv.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
+vim.pack.add({
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/saghen/blink.cmp",
+  "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/stevearc/conform.nvim",
+  "https://github.com/lewis6991/gitsigns.nvim",
+  "https://github.com/tzachar/highlight-undo.nvim",
+  "https://github.com/nvim-mini/mini.nvim",
+  "https://github.com/supermaven-inc/supermaven-nvim",
+  "https://github.com/romainl/vim-qf",
+})
 
-vim.opt.rtp:prepend(lazypath)
+map("n", "<F5>", vim.pack.update, { noremap = true })
 
-map("n", "<F5>", "<cmd>Lazy sync<CR>", { noremap = true })
+autocmd("User", {
+  pattern = "PackChanged",
+  callback = function(args)
+    local data = args.data
+    if data.kind == "install" or data.kind == "update" then
+      if data.spec.name == "blink.cmp" then
+        vim.fn.system({ "cargo", "build", "--release" }, { cwd = data.path })
+      elseif data.spec.name == "nvim-treesitter" then
+        vim.defer_fn(function()
+          vim.cmd("TSUpdate")
+        end, 100)
+      end
+    end
+  end,
+})
 
-require("lazy").setup("plugins", {
-  ui = { border = "single" },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
+require("nvim-treesitter.configs").setup({
+  ensure_installed = {
+    "bash",
+    "c",
+    "cpp",
+    "cmake",
+    "css",
+    "csv",
+    "diff",
+    "dockerfile",
+    "dot",
+    "elixir",
+    "elm",
+    "erlang",
+    "git_config",
+    "git_rebase",
+    "gitattributes",
+    "gitcommit",
+    "gitignore",
+    "go",
+    "gpg",
+    "graphql",
+    "heex",
+    "html",
+    "htmldjango",
+    "javascript",
+    "jq",
+    "json",
+    "json5",
+    "lua",
+    "make",
+    "markdown",
+    "markdown_inline",
+    "po",
+    "python",
+    "php",
+    "query",
+    "regex",
+    "robots",
+    "sql",
+    "ssh_config",
+    "todotxt",
+    "toml",
+    "vim",
+    "vimdoc",
+    "xml",
+    "yaml",
+  },
+  highlight = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<CR>",
+      node_incremental = "<CR>",
+      node_decremental = "<BS>",
     },
   },
 })
+
+-- blink.cmp
+require("blink.cmp").setup({
+  keymap = {
+    ["<CR>"] = { "accept", "fallback" },
+    ["<C-n>"] = { "show", "select_next" },
+    ["<C-p>"] = { "show", "select_prev" },
+  },
+  cmdline = { enabled = false },
+  completion = {
+    menu = {
+      draw = {
+        columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind", "source_name", gap = 1 } },
+      },
+    },
+    documentation = { auto_show = true, auto_show_delay_ms = 100 },
+  },
+  signature = { enabled = true },
+  appearance = { use_nvim_cmp_as_default = true },
+})
+
+-- fzf-lua
+local fzf = require("fzf-lua")
+fzf.setup({
+  defaults = { file_icons = "mini" },
+  fzf_opts = { ["--layout"] = "default" },
+  fzf_colors = true,
+})
+fzf.register_ui_select(function(_, items)
+  local min_h, max_h = 0.15, 0.70
+  local h = (#items + 4) / vim.o.lines
+  if h < min_h then
+    h = min_h
+  elseif h > max_h then
+    h = max_h
+  end
+  return { winopts = { height = h, width = 0.60, row = 0.40 } }
+end)
+map("n", "<leader>p", fzf.files, { noremap = true })
+map("n", "<leader>t", function()
+  fzf.tags({
+    ctags_autogen = true,
+    cmd = "ctags --excmd=combine --quiet -Rf -",
+    fzf_opts = { ["--with-nth"] = "1,2" },
+  })
+end, { noremap = true, silent = true })
+map("n", "<leader>b", fzf.buffers, { noremap = true })
+map("n", "<leader>h", fzf.helptags, { noremap = true })
+
+-- conform.nvim
+map("n", "<leader><leader>", function()
+  require("conform").format({ async = true })
+end, { noremap = true })
+
+require("conform").setup({
+  formatters_by_ft = {
+    css = { "prettier" },
+    eelixir = { "rustywind", "mix" },
+    elixir = { "rustywind", "mix" },
+    go = { "gofmt" },
+    heex = { "rustywind", "mix" },
+    html = { "rustywind", "prettier" },
+    htmldjango = { "djlint" },
+    javascript = { "prettier" },
+    json = { "jq" },
+    lua = { "stylua" },
+    markdown = { "prettier" },
+    python = { "ruff_fix", "ruff_format" },
+    sh = { "shfmt" },
+    yaml = { "prettier" },
+    cpp = { "astyle" },
+    ["*"] = { "trim_whitespace" },
+  },
+  formatters = {
+    djlint = {
+      inherit = true,
+      prepend_args = { "--profile", "django", "--indent", "2", "--indent-css", "2", "--indent-js", "2" },
+    },
+  },
+  format_on_save = false,
+})
+
+-- gitsigns.nvim
+require("gitsigns").setup({
+  current_line_blame_opts = { delay = 0 },
+})
+local gitsigns = require("gitsigns")
+map("n", "<leader>g", gitsigns.toggle_current_line_blame, {})
+map("n", "<leader>gb", gitsigns.blame, {})
+map("n", "<leader>gd", gitsigns.diffthis, {})
+
+-- highlight-undo.nvim
+require("highlight-undo").setup()
+autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function(opts)
+    vim.highlight.on_yank({ higroup = "HighlightUndo", timeout = 200 })
+  end,
+})
+
+-- mini.nvim
+require("mini.cursorword").setup()
+require("mini.indentscope").setup({
+  symbol = "▏",
+  draw = {
+    animation = require("mini.indentscope").gen_animation.none(),
+  },
+})
+local hipatterns = require("mini.hipatterns")
+hipatterns.setup({
+  highlighters = {
+    fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+    hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+    todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+    note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+    hex_color = hipatterns.gen_highlighter.hex_color(),
+  },
+})
+require("mini.icons").setup()
+require("mini.icons").mock_nvim_web_devicons()
+local gen_ai_spec = require("mini.extra").gen_ai_spec
+
+-- supermaven-nvim
+require("supermaven-nvim").setup({
+  keymaps = {
+    accept_suggestion = "<C-h>",
+    clear_suggestion = "<C-X>",
+  },
+  disable_inline_completion = false,
+  disable_keymaps = false,
+  log_level = "off",
+})
+
+-- vim-qf
+vim.g["qf_mapping_ack_style"] = 1
+vim.g["qf_statusline"] = {
+  before = [[%<\ ]],
+  after = [[\ %f%=%l\/%-6L\ \ \ \ \ ]],
+}
+
+map("n", "<C-k>", "<Plug>(qf_loc_previous)", { noremap = false })
+map("n", "<C-j>", "<Plug>(qf_loc_next)", { noremap = false })
+map("n", "<A-k>", "<Plug>(qf_qf_previous)", { noremap = false })
+map("n", "<A-j>", "<Plug>(qf_qf_next)", { noremap = false })
