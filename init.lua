@@ -1,6 +1,7 @@
 local set = vim.opt
 local map = vim.keymap.set
 local autocmd = vim.api.nvim_create_autocmd
+vim.g.mapleader = " "
 
 if not vim.fn.has("gui_running") then
   require("vim._extui").enable({})
@@ -309,7 +310,6 @@ map("n", "<A-k>", "<Plug>(qf_qf_previous)", { noremap = false })
 map("n", "<A-j>", "<Plug>(qf_qf_next)", { noremap = false })
 
 -- mappings
-vim.g.mapleader = " "
 
 -- clear search highlights
 map("n", "<leader>/", ":nohlsearch<cr>", { noremap = true })
