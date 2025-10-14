@@ -1,3 +1,15 @@
 {
-  "plugins": []
+  "plugins": {
+    "blink.cmp": [],
+    "conform.nvim": [],
+    "fzf-lua": [],
+    "gitsigns.nvim": [],
+    "highlight-undo.nvim": [],
+    "mini.nvim": {
+      "rev": "4eaa8f4"
+    },
+    "nvim-treesitter": [],
+    "supermaven-nvim": [],
+    "vim-qf": []
+  }
 }
