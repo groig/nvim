@@ -1,15 +1,30 @@
 {
   "plugins": {
-    "blink.cmp": [],
-    "conform.nvim": [],
-    "fzf-lua": [],
-    "gitsigns.nvim": [],
+    "blink.cmp": {
+      "rev": "b19413d214068f316c78978b08264ed1c41830ec"
+    },
+    "conform.nvim": {
+      "rev": "cde4da5"
+    },
+    "fzf-lua": {
+      "rev": "833781323058edd86be511dde676cd62d496e004"
+    },
+    "gitsigns.nvim": {
+      "rev": "20ad441"
+    },
     "highlight-undo.nvim": [],
     "mini.nvim": {
-      "rev": "4eaa8f4"
+      "rev": "dce9bc4e19d02d5c37fe71c16f40f8a5536b0386"
     },
-    "nvim-treesitter": [],
+    "nvim-treesitter": {
+      "rev": "0cfa59947416d14e36a41e6fe4f025abd8760301",
+      "version": "'main'"
+    },
     "supermaven-nvim": [],
+    "treesitter-modules.nvim": {
+      "rev": "feda026577576014e4627204309faab3c814e378",
+      "src": "https://github.com/MeanderingProgrammer/treesitter-modules.nvim"
+    },
     "vim-qf": []
   }
 }

@@ -12,7 +12,7 @@ vim.cmd.colorscheme("apprentice")
 vim.api.nvim_create_autocmd("TermResponse", {
   callback = function(args)
     if vim.go.background == "light" then
-      vim.cmd.colorscheme("light")
+      vim.cmd.colorscheme("neolabaster")
     elseif vim.go.background == "dark" then
       vim.cmd.colorscheme("apprentice")
     end
@@ -123,7 +123,8 @@ set.signcolumn = "yes"
 
 -- plugins
 vim.pack.add({
-  "https://github.com/nvim-treesitter/nvim-treesitter",
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+  "https://github.com/MeanderingProgrammer/treesitter-modules.nvim",
   "https://github.com/saghen/blink.cmp",
   "https://github.com/ibhagwan/fzf-lua",
   "https://github.com/stevearc/conform.nvim",
@@ -152,7 +153,8 @@ autocmd("User", {
   end,
 })
 
-require("nvim-treesitter.configs").setup({
+require("treesitter-modules").setup({
+  auto_install = true,
   ensure_installed = "all",
   ignore_install = { "ipkg", "gdshader" },
   highlight = { enable = true },
@@ -320,7 +322,7 @@ map("n", "<leader>s", [[ mz:silent! %s/\s\+$//<cr>:let @/='' <CR>`z ]], { norema
 -- edit config file
 map("n", "<leader>v", ":e $XDG_CONFIG_HOME/nvim/init.lua<CR>", { noremap = true })
 
--- alternate byffers
+-- alternate buffers
 map("n", "<BS>", ":b#<CR>", { silent = true })
 
 -- spell
@@ -349,13 +351,14 @@ map("n", "S", "i<CR><Esc>", { noremap = true })
 -- close other window
 map("n", "<leader>c", ":wincmd p | q<CR>", { noremap = true, silent = true })
 
-vim.cmd([[nmap <C-g> :file\|lua print(require'nvim-treesitter.statusline'.statusline({indicator_size=200}))<cr>]])
+vim.cmd([[nmap <C-g> :file\|lua print(require'treesitter-modules.statusline'.statusline({indicator_size=200}))<cr>]])
 
 -- augroups
 autocmd("BufReadPost", {
   pattern = "*",
   command = [[silent! normal! g`"zv]],
 })
+
 
 -- lsp config
 autocmd("LspAttach", {
