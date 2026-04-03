@@ -2,9 +2,8 @@ return {
   "nvim-treesitter/nvim-treesitter",
   event = "BufReadPost",
   build = ":TSUpdate",
-  branch = "master",
-  opts = {
-    ensure_installed = {
+  init = function()
+    local ensureInstalled = {
       "bash",
       "c",
       "cpp",
@@ -50,23 +49,14 @@ return {
       "vimdoc",
       "xml",
       "yaml",
-    },
-    highlight = {
-      enable = true,
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<CR>",
-        node_incremental = "<CR>",
-        node_decremental = "<BS>",
-      },
-    },
-    -- indent = {
-    --   enable = true,
-    -- },
-  },
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
+    }
+    local alreadyInstalled = require("nvim-treesitter.config").get_installed()
+    local parsersToInstall = vim
+      .iter(ensureInstalled)
+      :filter(function(parser)
+        return not vim.tbl_contains(alreadyInstalled, parser)
+      end)
+      :totable()
+    require("nvim-treesitter").install(parsersToInstall)
   end,
 }

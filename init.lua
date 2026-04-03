@@ -14,7 +14,7 @@ autocmd("InsertEnter", {
 })
 
 if not vim.fn.has("gui_running") then
-  require("vim._extui").enable({})
+  require("vim._core.ui2").enable({ enable = true })
 end
 
 local scheme = vim.fn.system({ "gsettings", "get", "org.gnome.desktop.interface", "color-scheme" })
@@ -181,7 +181,13 @@ map("n", "S", "i<CR><Esc>", { noremap = true })
 -- close other window
 map("n", "<leader>c", ":wincmd p | q<CR>", { noremap = true, silent = true })
 
+-- statusline indicator
 vim.cmd([[nmap <C-g> :file\|lua print(require'nvim-treesitter.statusline'.statusline({indicator_size=200}))<cr>]])
+
+-- incremental selection
+map("n", "<CR>", "vin", { remap = true, desc = "Start incremental selection" })
+map("x", "<CR>", "an", { remap = true, desc = "Expand incremental selection" })
+map("x", "<BS>", "in", { remap = true, desc = "Shrink incremental selection" })
 
 -- augroups
 autocmd("BufReadPost", {
